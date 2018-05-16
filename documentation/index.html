@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Angular Documentation</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="./app/index.js"></script>
+</head>
+<body ng-app="basicApp" ng-controller="mainController">
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+
+      <!-- section 1st -->
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-click</div>
+        <div class="card-body">
+          <p class="card-text">ng-click triggerd when the mouse click some object</p>
+          <button type="button" class="btn btn-primary" ng-click="showAlert('ng-click')">Click Me</button>
+        </div>
+        <div class="card-footer">
+          card footer
+        </div>
+      </div>
+
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-change</div>
+        <div class="card-body">
+          <p class="card-text">ng-change triggerd when dropdown or input field change, it also works on checkboxes and radio buttons</p>
+          <select class="custom-select" name="ng-change" ng-model="valueToStore"  ng-change="showAlert('ng-change')">
+            <option selected>Choose....</option>
+            <option value="">First</option>
+            <option value="">Second</option>
+            <option value="">Third</option>
+            <option value="">Fourth</option>
+            <option value="">Fifth</option>
+          </select>
+        </div>
+        <div class="card-footer">
+          card footer
+        </div>
+      </div>
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-focus</div>
+        <div class="card-body">
+          <p class="card-text">ng-focus triggerd when any element get focused using tab key or mouse click</p>
+
+            {{focusObj.dropdown}}
+
+          <select class="custom-select" name="ng-focus" ng-model="valueToStore"  ng-focus="markFocused('dropdown')">
+            <option selected>Choose....</option>
+            <option value="">First</option>
+            <option value="">Second</option>
+            <option value="">Third</option>
+            <option value="">Fourth</option>
+            <option value="">Fifth</option>
+          </select>
+          <br>
+          <div class="bs-linebreak"></div>
+          {{focusObj.input}}
+          <input type="text" class="form-control" ng-focus="markFocused('input')">
+        </div>
+        <div class="card-footer">
+          card footer
+        </div>
+      </div>
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-blur</div>
+        <div class="card-body">
+          <p class="card-text">ng-blur triggerd when any element looses focus</p>
+          <select class="custom-select" name="" ng-model="valueToStore"  ng-blur="showAlert('ng-blur from dropdown')">
+            <option selected>Choose....</option>
+            <option value="">First</option>
+            <option value="">Second</option>
+            <option value="">Third</option>
+            <option value="">Fourth</option>
+            <option value="">Fifth</option>
+          </select>
+          <input type="text" class="mt-1 form-control" ng-blur="showAlert('ng-blur from input')">
+        </div>
+        <div class="card-footer">
+          card footer
+        </div>
+      </div>
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-copy</div>
+        <div class="card-body">
+          <p class="card-text">ng-blur triggerd when user try to copy text using right click or ctrl+c</p>
+          <input type="text" class="mt-1 form-control" ng-copy="showAlert('ng-copy from input')">
+        </div>
+        <div class="card-footer">
+          card footer
+        </div>
+      </div>
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-cut</div>
+        <div class="card-body">
+          <p class="card-text">ng-cut triggerd when user try to cut text using right click or ctrl+X</p>
+          <input type="text" class="mt-1 form-control" ng-cut="showAlert('ng-cut from input')">
+        </div>
+        <div class="card-footer">
+          card footer
+        </div>
+      </div>
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-paste</div>
+        <div class="card-body">
+          <p class="card-text">ng-paste triggerd when user try to paste text using right click or ctrl+v</p>
+          <input type="text" class="mt-1 form-control" ng-paste="showAlert('ng-paste from input')">
+        </div>
+        <div class="card-footer">
+          card footer
+        </div>
+      </div>
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-dblclick</div>
+        <div class="card-body">
+          <p class="card-text">ng-dblclick triggerd when the double left mouse click on some object</p>
+          <button type="button" class="btn btn-primary" ng-dblclick="showAlert('ng-dblclick')">Click Me</button>
+        </div>
+        <div class="card-footer">
+          card footer
+        </div>
+      </div>
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-keydown ng-keypress ng-keypress</div>
+        <div class="card-body">
+          <p class="card-text">keyboard events are triggerd when keys are pressed up or key down</p>
+          <ul>
+            <li><h4>ng-keydown</h4> is triggerd when key is pressed or key is in down position</li>
+            <li><h4>ng-keypress</h4>is triggerd when key is pressed, it does not recognise alt, ctrl nor shift</li>
+            <li><h4>ng-keyup</h4>is triggerd when a key is released</li>
+          </ul>
+          {{keyboardPosition}}
+          <input type="text" class="mt-1 form-control" ng-keydown="keyboardPosition='keydown'"  ng-keyup="keyboardPosition='keyup'">
+          {{keypressEvent}}
+          <input type="text" name="" value="" class="mt-1 form-control" ng-keypress="keypressEvent='keypress'">
+        </div>
+        <div class="card-footer">
+          card footer
+        </div>
+      </div>
+
+        <!-- mouse events -->
+      <div class="card mb-5">
+        <div class="card-header bg-primary"> ng-mousedown ng-mousemove ng-mouseover ng-mouseenter ng-mouseleave ng-mouse</div>
+        <div class="card-body">
+          <p class="card-text">Mouse events are triggerd when mouse moved or buton are clicked</p>
+          <ul>
+            <li><h4>ng-mouseup</h4> is triggerd when mouse key is released</li>
+            <li><h4>ng-mousedown</h4> is triggerd when key is pressed or left button is in down position</li>
+            <li><h4>ng-mouseenter</h4>is triggerd when mouse enters in a object area that is listening the event</li>
+            <li><h4>ng-mouseleave</h4>is triggerd when mouse leave the area object that is listening event</li>
+            <li><h4>ng-mousemove</h4>is triggerd everytime when mouse moved from the area object that is listening event</li>
+            <li><h4>ng-mouseover</h4>is triggerd everytime when mouse is over to the area object that is listening event</li>
+          </ul>
+          <div class="row">
+            <div class="col-md-3 bg-primary">
+              <label for="" class="" ng-mousedown="mouse.down = mouse.down+1">Mousedown {{mouse.down}} times</label>
+            </div>
+            <div class="col-md-3 bg-warning">
+              <label for="" class="" ng-mouseup="mouse.up = mouse.up+1">Mouseup {{mouse.up}} times</label>
+            </div>
+            <div class="col-md-3 bg-info">
+              <label for="" class="" ng-mouseenter="mouse.enter = mouse.enter+1">Mouseenter {{mouse.enter}} times</label>
+            </div>
+            <div class="col-md-3 bg-danger">
+              <label for="" class="" ng-mouseleave="mouse.leave = mouse.leave+1">Mouseleave {{mouse.leave}} times</label>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-3 bg-dark">
+                <label for="" class="" ng-mousemove="mouse.move = mouse.move+1">Mousemove {{mouse.move}} times</label>
+              </div>
+              <div class="col-md-3 bg-light">
+                <label for="" class="" ng-mouseover="mouse.over = mouse.over+1">Mouseover {{mouse.over}} times</label>
+              </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          card footer
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    app.controller('mainController', ($scope)=>{
+
+      $scope.mouse={
+        down:0,
+        up:0,
+        enter:0,
+        leave:0,
+        move:0,
+        over:0
+      };
+      $scope.keyboardPosition="";
+      $scope.keypressEvent="";
+      $scope.focusObj = {
+        dropdown:'not focused',
+        input: 'not focused'
+      };
+      $scope.showAlert = function(origin){
+        alert("This alert was triggerd by "+origin);
+      }
+
+      $scope.markFocused = function (obj) {
+        $scope.focusObj[obj] = "object focused";
+      }
+    });
+  </script>
+</body>
+</html>
