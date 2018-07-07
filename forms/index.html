@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="./app/index.js"></script>
+  <script src="./app/form-controllers.js"></script>
+</head>
+
+<body ng-app="formApp" ng-controller="formsController">
+  <h1 class="display-4 text-center">Documentation of Forms{{7+4}}</h1>
+  <div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 offset-md-2">
+
+      <!-- ng-model -->
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-model</div>
+        <div class="card-body">
+          <p class="card-text">It stores the value of the form fields into the controller into a scope variable.</p>
+          <input type="text" name="" id="" ng-model="form.carType">
+          <input type="checkbox" name="" id="" ng-model="form.hasTurbo">
+          <br> {{form}}
+        </div>
+      </div>
+
+      <!-- ng-disabled -->
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-disabled</div>
+        <div class="card-body">
+          <p class="card-text">Disabled the form field if the condition is ture.</p>
+          <input type="text" name="" id="" ng-model="formDisabled.name" ng-disabled="formDisabled.disableName">
+          <input type="checkbox" name="" id="" ng-model="formDisabled.disableName">
+          <br> {{formDisabled}}
+        </div>
+      </div>
+
+      <!-- ng-submit -->
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-submit</div>
+        <div class="card-body">
+          <p class="card-text">Submits the from calling a function that is in the scope.</p>
+          <form ng-submit="validateForm()">
+            <input type="text" name="" id="" ng-model="formSubmit.name" ng-disabled="formSubmit.disableName">
+            <input type="checkbox" name="" id="" ng-model="formSubmit.hasId">
+            <input type="submit" value="Submit Form" class="btn btn-primary">
+            <div class=" mt-3 alert alert-danger" ng-show="formSubmit.error">{{formSubmit.error}}</div>
+          </form>
+          <br> {{formSubmit}}
+        </div>
+      </div>
+
+      <!-- ng-submit -->
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-checkbox</div>
+        <div class="card-body">
+          <p class="card-text">The various ways to define the value returned when the checkbox is checked or not.</p>
+          <label for="cb1">True or False</label>
+          <input type="checkbox" name="" id="cb1" ng-model="checkbox.cb1">
+          <br>
+          <label for="cb2">"Y" or "N"</label>
+          <input type="checkbox" name="" id="cb2" ng-model="checkbox.cb2" ng-true-value="'Y'" ng-false-value="'N'">
+          <br>
+          <label for="cb3">Going or Not Going</label>
+          <input type="checkbox" name="" id="cb3" ng-model="checkbox.cb3" ng-true-value="'Going'" ng-false-value="'Not Going'">
+          <br>
+          <p>{{checkbox}}</p>
+        </div>
+      </div>
+
+      <!-- ng-option -->
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-option</div>
+        <div class="card-body">
+          <p class="card-text">Load options into a dropdown by a JSON array.</p>
+          <label for="manual">Select on the options created manually.</label>
+          <select name="" id="manual" ng-model="dropdown.manual">
+            <option value="1">This is one (manual)</option>
+            <option value="2">This is two (manual)</option>
+            <option value="3">This is three (manual)</option>
+          </select>
+          <br>
+          <p>{{dropdown.manual}}</p>
+
+          <label for="fromArray">Select on the options create by formArray.</label>
+          <select name="" id="fromArray" ng-model="dropdown.fromArray" ng-options="item as item.name for item in dropdownArray">
+          </select>
+          <br>
+          <p>{{dropdown.fromArray}}</p>
+
+        </div>
+      </div>
+
+
+      <!-- select default option
+      <div class="card mb-5">
+        <div class="card-header bg-primary">Drop down select the deafult option</div>
+        <div class="card-body">
+          <p class="card-text">Load options into a dropdown by a JSON array.</p>
+          <label for="manualSelected">Select on the options created manually.</label>
+          <select name="" id="manualSelected" ng-model="dropdown.manual">
+            <option value="1">This is one (manual)</option>
+            <option value="2">This is two (manual)</option>
+            <option value="3">This is three (manual)</option>
+          </select>
+          <br>
+          <p>{{dropdown.manual}}</p>
+
+          <label for="fromArraySelected">Select on the options create by formArray.</label>
+          <select name="" id="fromArraySelected" ng-model="default.fromArray" ng-options="item as item.name for item in dropdownArray">
+          </select>
+          <br>
+
+          <label for="singleValueFromArraySelected">Single value array dropdown.</label>
+          <select name="" id="singleValueFromArraySelected"
+                  ng-model="dropdown.fromArray"
+                  ng-options="item.value as item.name for item in dropdownArray">
+          </select>
+          manual<p>{{dropdown.manual}}</p>
+          Array<p>{{dropdown.fromArray}}</p>
+          Single value<p>{{dropdown.singleValueFromArraySelected}}</p>
+
+        </div>
+      </div> -->
+
+
+      <!-- Using required and valid -->
+      <div class="card mb-5">
+        <div class="card-header bg-primary">ng-option</div>
+        <div class="card-body">
+          <p class="card-text">Using required and $valid <br> required is used to let angular know that the specific field is required </p>
+          <p>$valid is used in conjunction to required to varify if the field was populated.</p>
+          <form name="myForm">
+            <input type="text" name="" id="" ng-model="requiredTest">
+          </form>
+          <p>{{requiredTest}}</p>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+</body>
+
+</html>

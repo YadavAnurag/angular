@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Angular Documentation</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="./app/index.js"></script>
+</head>
+<body ng-app="basicApp" ng-controller="mainController">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <!-- ng-if -->
+      <div class="card mb-5">
+        <div class="card-header bg-primary">
+          <h4>ng-if</h4>
+        </div>
+        <div class="card-body">
+          <p class="card-text">conditionally display the innerHTML of the object</p>
+                <input type="checkbox" name="" value="" ng-model="isCheckboxChecked">
+            <span ng-if="isCheckboxChecked">Checkbox is Checked</span>
+            <span ng-if="!isCheckboxChecked">Checkbox is not Checked</span>
+          </div>
+        </div>
+
+        <!-- ng-hide -->
+        <div class="card mb-5">
+          <div class="card-header bg-primary">
+            <h4>ng-hide</h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text">conditionally hide the innerHTML of the object</p>
+              <input type="checkbox" name="" value="" ng-model="shouldHide">
+              <span ng-hide="shouldHide">Is Hidden is {{shouldHide}}</span>
+            </div>
+          </div>
+
+          <!-- ng-show -->
+          <div class="card mb-5">
+            <div class="card-header bg-primary">
+              <h4>ng-show</h4>
+            </div>
+            <div class="card-body">
+              <p class="card-text">conditionally show the innerHTML of the object, the object is created in the DOM but dispalyed only condition is true</p>
+                {{shouldShow}}&nbsp;<input type="checkbox" name="" value="" ng-model="shouldShow" ng-true-value="'YES'" ng-false-value="'NO'">
+                <span ng-show="shouldShow==='YES'">Showing the innerHTML of the object</span>
+              </div>
+            </div>
+
+            <!-- ng-class -->
+            <div class="card mb-5">
+              <div class="card-header bg-primary">
+                <h4>ng-class</h4>
+              </div>
+              <div class="card-body">
+                <p class="card-text">conditionally applies the style into a HTML element</p>
+                <p>selected style is {{styleClass}}</p>
+                  <input type="radio" name="styleClass" ng-model="styleClass" value="success">
+                  <input type="radio" name="styleClass" ng-model="styleClass" value="warning">
+                  <input type="radio" name="styleClass" ng-model="styleClass" value="primary">
+                  <button class="btn" type="button" name="button" ng-class="{'btn-success':styleClass==='success', 'btn-primary':styleClass==='primary', 'btn-warning':styleClass==='warning'}">{{styleClass}} button</button>
+                </div>
+              </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    app.controller('mainController', function($scope){
+      $scope.isCheckboxChecked = false;
+      $scope.shouldHide = false;
+      $scope.shouldShow = 'YES';
+    });
+  </script>
+</body>
+</html>
